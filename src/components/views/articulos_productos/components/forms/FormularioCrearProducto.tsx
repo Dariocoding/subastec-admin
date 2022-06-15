@@ -5,7 +5,7 @@ import clienteAxios from '../../../../../config/axios';
 import { Formik, Form } from 'formik';
 import validarProducto from '../../validations/validarProducto';
 // COMPONENTS
-import { Input, Select, Textarea, Button, TinyMceEditor } from '../../../../layout/common/forms';
+import { Input, Select, Button, TinyMceEditor } from '../../../../layout/common/forms';
 import dataInputsProducto from './dataInputsProducto';
 import dataSelectProductos from './dataSelectsProducto.';
 
@@ -25,7 +25,6 @@ const FormularioCrearProducto: React.FunctionComponent<IFormularioCrearProductoP
 	const { setShowModal } = useModal();
 	const { setLoader } = useLoader();
 	const { DropzoneContenedor, files } = useDropzone({
-		accept: 'image/*',
 		limit: 10,
 	});
 

@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useDropzone as Dropzone } from 'react-dropzone';
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ import { toBase64 } from '../components/utils';
 
 const useDropzone = (props: IUseDropzoneProps): UseDropzoneReturnValues => {
 	const {
-		accept = 'image/*',
+		accept = { 'image/*': [] },
 		action = 'multiple',
 		labelText = 'Arrastra y suelta los archivos aqui para subir',
 		iconPreview,
@@ -213,8 +213,10 @@ const ThumbInner = styled.div`
 
 export default useDropzone;
 
+type Accept = { [key: string]: string[] };
+
 interface IUseDropzoneProps {
-	accept?: string;
+	accept?: Accept;
 	action?: 'multiple' | 'single';
 	labelText?: string;
 	iconPreview?: ReactNode;

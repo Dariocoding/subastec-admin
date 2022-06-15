@@ -6,7 +6,7 @@ import Modal from '../../layout/common/Modal';
 import PageComponent from '../../layout/app/Content/PageComponent';
 import TableInfo, { InfoTableInterface } from '../../layout/common/tables/tableInfo/TableInfo';
 import TileImagen from './components/TileImagen';
-import ReactHtmlParser from 'react-html-parser';
+import ReactHtmlParser from 'html-react-parser';
 
 // HOOKS
 import useValidarPermisosPagina from '../../../hooks/useValidarPermisosPagina';
