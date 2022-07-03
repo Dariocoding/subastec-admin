@@ -6,11 +6,11 @@ import dataInputsSubastas from './dataInputs';
 // COMPONENTS
 import { Input, Select, Button, DateTimePicker } from '../../../../layout/common/forms';
 import MostrarElementSelected from './MostrarElementSelected';
-
+import moment from 'moment-timezone';
 // HOOKS
 import useTabs from '../../../../../hooks/useTabs';
 import { toast } from 'react-toastify';
-import { handleError, fechaActual } from '../../../../utils';
+import { fechaActual, handleError } from '../../../../utils';
 import clienteAxios from '../../../../../config/axios';
 import { SubastaType } from '../../types';
 import { ProductoType } from '../../../articulos_productos/types';
@@ -23,7 +23,9 @@ interface IFormCrearSubastaProps {
 	paqueteBids: PaqueteBidType[];
 }
 
-const FormCrearSubasta: React.FunctionComponent<IFormCrearSubastaProps> = props => {
+moment.tz.setDefault('America/Guayaquil');
+const FormCrearSubasta: React.FC<IFormCrearSubastaProps> = props => {
+	console.log(mo);
 	const { addSubasta, productos, paqueteBids } = props;
 	const { cerrarModal } = useModal();
 	const [productoActual, setProductoActual] = useState(null);
@@ -41,8 +43,8 @@ const FormCrearSubasta: React.FunctionComponent<IFormCrearSubastaProps> = props 
 		paqueteBidId: null,
 		costopuja: 1,
 		preciominimo: '',
-		fechaInicio: fechaActual,
-		fechaFinalizacion: fechaActual,
+		fechaInicio: fechaActual(),
+		fechaFinalizacion: fechaActual(),
 	};
 
 	async function handleSubmit(values: SubastaType) {
@@ -129,12 +131,14 @@ const FormCrearSubasta: React.FunctionComponent<IFormCrearSubastaProps> = props 
 							<DateTimePicker
 								name={'fechaInicio'}
 								label={'Fecha Inicio'}
+								minDate={fechaActual()}
 								required
 							/>
 
 							<DateTimePicker
 								name={'fechaFinalizacion'}
 								label={'Fecha Finalizacion'}
+								minDate={fechaActual()}
 								required
 							/>
 

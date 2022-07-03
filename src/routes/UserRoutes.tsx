@@ -2,8 +2,6 @@ import * as React from 'react';
 import PrivRoute from './PrivRoute';
 import { Route, Routes } from 'react-router-dom';
 
-interface IUserRoutesProps {}
-
 const Perfil = React.lazy(() => import('../components/views/usuarios/perfil/Perfil'));
 
 const Administradores = React.lazy(
@@ -12,7 +10,7 @@ const Administradores = React.lazy(
 
 const Usuarios = React.lazy(() => import('../components/views/usuarios/users_usuarios/Usuarios'));
 
-const UserRoutes: React.FunctionComponent<IUserRoutesProps> = () => (
+const UserRoutes: React.FunctionComponent = () => (
 	<Routes>
 		<Route path="/perfil" element={<PrivRoute component={Perfil} />} />
 		<Route

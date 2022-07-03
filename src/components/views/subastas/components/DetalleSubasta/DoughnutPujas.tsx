@@ -31,7 +31,7 @@ const DoughnutPujas: React.FC<IDoughnutPujasProps> = props => {
 	}))();
 
 	return (
-		<Tile>
+		<Tile className="d-flex justify-content-center">
 			<h4>
 				Estadistica de Pujas Manuales y Automáticas <FaChartPie />
 			</h4>

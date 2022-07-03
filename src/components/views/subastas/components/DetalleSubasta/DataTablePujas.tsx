@@ -40,12 +40,16 @@ const DataTablePuja: React.FunctionComponent<IDataTablePujaProps> = props => {
 
 	function mapeoPujas() {
 		return props.pujas.map(p => {
+			console.log(p);
 			const formula = (p.costopuja / 100) * p.cantidadBids;
 			const price = formatter.format(formula ? formula : 0);
 
 			p.price = price + ' USD';
 
 			p.modalidadFormated = p.modalidad === 'M' ? 'Manual' : 'Automático';
+
+			p.nameFormated =
+				p.user.nombres + ' ' + (p.user.apellidos ? p.user.apellidos : '');
 
 			p.options = (
 				<Dropdown>
@@ -71,8 +75,8 @@ const DataTablePuja: React.FunctionComponent<IDataTablePujaProps> = props => {
 					center: true,
 				},
 				{
-					name: 'Nombre de usuario',
-					dataKey: 'user.username',
+					name: 'Usuario',
+					dataKey: 'nameFormated',
 					center: true,
 				},
 				{

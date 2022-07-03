@@ -21,7 +21,7 @@ const SubastasDestacadas: React.FunctionComponent<ISubastasDestacadasProps> = ()
 
 	React.useEffect(() => {
 		async function fetchData() {
-			const urlSubastas = 'subastas/not-paquete-bids';
+			const urlSubastas = 'subastas/subastasGanadoras';
 			const urlSubastasDestacadas = 'subastas-destacadas';
 			const [reqSubastas, reqSubastasDestacadas] = await Promise.all([
 				clienteAxios(urlSubastas),
@@ -34,6 +34,8 @@ const SubastasDestacadas: React.FunctionComponent<ISubastasDestacadasProps> = ()
 
 		fetchData();
 	}, []);
+
+	console.log(subastas)
 
 	function limpiarSubastasDestacadas() {
 		toast.promise(

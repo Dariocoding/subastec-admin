@@ -18,6 +18,8 @@ export interface SubastaType {
 	preciosubasta?: number;
 	date_created?: Date;
 	status?: number;
+	winnerUser?: UserType;
+	winnerUserId?: number;
 	favoritos?: FavoritoType[];
 	pujas?: PujaType[];
 }
@@ -66,4 +68,5 @@ export interface PujaTableType extends PujaType {
 	price?: string;
 	dateCreatedFormated?: string;
 	options?: React.ReactNode;
+	nameFormated?: string;
 }

@@ -133,13 +133,13 @@ const FormEditarSubasta: React.FunctionComponent<IFormEditarSubastaProps> = prop
 
 							<DateTimePicker
 								label="Fecha Inicio"
-								minDate={fechaActual}
+								minDate={fechaActual()}
 								name={'fechaInicio'}
 							/>
 
 							<DateTimePicker
 								label="Fecha Finalizacion"
-								minDate={fechaActual}
+								minDate={fechaActual()}
 								name={'fechaFinalizacion'}
 							/>
 

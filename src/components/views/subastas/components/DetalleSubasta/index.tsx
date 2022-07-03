@@ -1,24 +1,37 @@
 import * as React from 'react';
-import TablePlaceholder from '../../../../layout/common/placeholders/TablePlaceholder';
-import ItemNotFound from '../../../../layout/common/ItemNotFound';
-import { PujaTableType, SubastaType } from '../../types';
+import { PujaTableType, PujaType, SubastaType } from '../../types';
 import DetailSubasta from './DetailSubasta';
 import DataTablePuja from './DataTablePujas';
 import DoughnutPujas from './DoughnutPujas';
+import { useSocket } from '../../../../../context/socket/SocketContext';
 
 interface IDetalleSubastaContentProps {
 	pujas: PujaTableType[];
 	subasta: SubastaType;
 	isLoading: boolean;
 	setSubasta(value: SubastaType): void;
+	setPujas(pujas: PujaType[]): void;
 }
+
+type ReqPujaType = { puja: PujaType; preciosubasta: number };
 
 const DetalleSubastaContent: React.FunctionComponent<IDetalleSubastaContentProps> = props => {
 	const { subasta, isLoading } = props;
+	const [hanPujado, setHanPujado] = React.useState(false);
+	const { Socket } = useSocket();
 
-	if (isLoading) return <TablePlaceholder />;
-
-	if (!subasta) return <ItemNotFound mensaje="Subasta no encontrada" />;
+	React.useEffect(() => {
+		Socket.on(`subasta-${subasta.idsubasta}-puja`, (body: ReqPujaType) => {
+			props.setSubasta({
+				...subasta,
+				preciosubasta: body.preciosubasta,
+			});
+			props.setPujas([body.puja, ...props.pujas]);
+			setHanPujado(true);
+			setTimeout(() => setHanPujado(false), 750);
+		});
+		// eslint-disable-next-line
+	}, [subasta]);
 
 	return (
 		<React.Fragment>
@@ -27,6 +40,7 @@ const DetalleSubastaContent: React.FunctionComponent<IDetalleSubastaContentProps
 					<DetailSubasta
 						subasta={subasta}
 						setSubasta={props.setSubasta}
+						hanPujado={hanPujado}
 					/>
 				</div>
 				<div className="col-lg-8">

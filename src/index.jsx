@@ -9,20 +9,24 @@ import ConfigState from './context/configuracion/ConfigState';
 import ModalState from './context/modal/ModalState';
 import 'react-toastify/dist/ReactToastify.css';
 import './extensions';
+import SocketState from './context/socket/SocketContext';
 import LoaderPageState from './context/loaderpage/LoaderPageState';
 import moment from 'moment-timezone';
 
+export const momentTz = moment.tz.setDefault('America/Chicago');
+console.log(momentTz().toDate());
+
 const divRoot = document.getElementById('root');
 const root = ReactDOM.createRoot(divRoot);
-moment.tz.setDefault('America/guayaquil');
-//@ts-ignore
 
 root.render(
 	<AuthState>
 		<LoaderPageState>
 			<ConfigState>
 				<ModalState>
-					<App />
+					<SocketState>
+						<App />
+					</SocketState>
 				</ModalState>
 			</ConfigState>
 		</LoaderPageState>

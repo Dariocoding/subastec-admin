@@ -2,10 +2,12 @@ import * as React from 'react';
 import PageComponent from '../../layout/app/Content/PageComponent';
 import { GiReceiveMoney } from 'react-icons/gi';
 import { useParams } from 'react-router-dom';
-import { PujaTableType, PujaType, SubastaType } from './types';
+import { PujaTableType, SubastaType } from './types';
 import clienteAxios from '../../../config/axios';
 import { toast } from 'react-toastify';
 import DetalleSubastaContent from './components/DetalleSubasta';
+import PagePlaceholder from '../../layout/common/placeholders/PagePlaceholder';
+import ItemNotFound from '../../layout/common/ItemNotFound';
 
 interface IDetalleSubastaProps {}
 
@@ -21,7 +23,7 @@ const DetalleSubasta: React.FC<IDetalleSubastaProps> = () => {
 			const idToast = toast.loading('Cargando subasta...');
 			try {
 				const urlSubasta = `subastas/${idsubasta}`;
-				const urlPujas = `puja/findAllBySubastaId/${idsubasta}`;
+				const urlPujas = `puja?subastaid=${idsubasta}`;
 				const [reqSubasta, reqPujas] = await Promise.all([
 					clienteAxios(urlSubasta),
 					clienteAxios(urlPujas),
@@ -49,6 +51,8 @@ const DetalleSubasta: React.FC<IDetalleSubastaProps> = () => {
 		fetchData();
 	}, []);
 
+	if (loading) return <PagePlaceholder />;
+
 	return (
 		<PageComponent
 			titulo={'Detalle Subasta'}
@@ -60,12 +64,17 @@ const DetalleSubasta: React.FC<IDetalleSubastaProps> = () => {
 				{ titulo: 'Detalle subasta' },
 			]}
 		>
-			<DetalleSubastaContent
-				pujas={pujas}
-				isLoading={loading}
-				subasta={subasta}
-				setSubasta={setSubasta}
-			/>
+			{subasta ? (
+				<DetalleSubastaContent
+					pujas={pujas}
+					isLoading={loading}
+					subasta={subasta}
+					setSubasta={setSubasta}
+					setPujas={setPujas}
+				/>
+			) : (
+				<ItemNotFound mensaje="Subasta no encontrada" />
+			)}
 		</PageComponent>
 	);
 };

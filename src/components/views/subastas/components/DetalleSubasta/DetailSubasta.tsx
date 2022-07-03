@@ -26,6 +26,7 @@ const StyledPaqueteBid = styled.div<{ background: string }>`
 interface IDetailSubastaProps {
 	subasta: SubastaType;
 	setSubasta(value: SubastaType): void;
+	hanPujado: boolean;
 }
 
 const DetailSubasta: React.FC<IDetailSubastaProps> = props => {
@@ -82,46 +83,61 @@ const DetailSubasta: React.FC<IDetailSubastaProps> = props => {
 					) : null}
 				</StyledPaqueteBid>
 			)}
-			<h4>{subasta.titulo}</h4>
 
-			<DetailSubastaContent titulo="ID Subasta" text={subasta.idsubasta} />
-			<DetailSubastaContent titulo="Costo Puja" text={subasta.costopuja} />
+			<ContainerDetails hanPujado={props.hanPujado}>
+				<h4>{subasta.titulo}</h4>
 
-			<DetailSubastaContent
-				titulo="Precio minimo"
-				text={`${formatter
-					//@ts-ignore
-					.format(subasta.preciominimo)
-					.replace('$', '')} USD`}
-			/>
-			<DetailSubastaContent
-				titulo="Precio Subasta"
-				text={`${formatter
-					//@ts-ignore
-					.format(
-						subasta.preciosubasta ? subasta.preciosubasta : 0.01
-					)
-					.replace('$', '')} USD`}
-			/>
+				<DetailSubastaContent
+					titulo="ID Subasta"
+					text={subasta.idsubasta}
+				/>
+				<DetailSubastaContent
+					titulo="Costo Puja"
+					text={subasta.costopuja}
+				/>
 
-			<DetailSubastaContent
-				titulo="Fecha creación"
-				text={moment(subasta.date_created).format('DD/MM/YYYY')}
-			/>
+				<DetailSubastaContent
+					titulo="Precio minimo"
+					text={`${formatter
+						//@ts-ignore
+						.format(subasta.preciominimo)
+						.replace('$', '')} USD`}
+				/>
+				<DetailSubastaContent
+					titulo="Precio Subasta"
+					text={`${formatter
+						//@ts-ignore
+						.format(
+							subasta.preciosubasta
+								? subasta.preciosubasta
+								: 0.01
+						)
+						.replace('$', '')} USD`}
+				/>
 
-			<DetailSubastaContent
-				titulo="Fecha inicio"
-				text={moment(subasta.fechaInicio).format('DD/MM/YYYY H:m:s')}
-			/>
+				<DetailSubastaContent
+					titulo="Fecha creación"
+					text={moment(subasta.date_created).format('DD/MM/YYYY')}
+				/>
 
-			<DetailSubastaContent
-				titulo="Fecha finalización"
-				text={moment(subasta.fechaFinalizacion).format('DD/MM/YYYY H:m:s')}
-			/>
+				<DetailSubastaContent
+					titulo="Fecha inicio"
+					text={moment(subasta.fechaInicio).format(
+						'DD/MM/YYYY H:m:s'
+					)}
+				/>
 
-			<button className="btn btn-primary mt-2" onClick={editarSubasta}>
-				Editar Subasta <FaPen />
-			</button>
+				<DetailSubastaContent
+					titulo="Fecha finalización"
+					text={moment(subasta.fechaFinalizacion).format(
+						'DD/MM/YYYY H:m:s'
+					)}
+				/>
+
+				<button className="btn btn-primary mt-2" onClick={editarSubasta}>
+					Editar Subasta <FaPen />
+				</button>
+			</ContainerDetails>
 		</Tile>
 	);
 };
@@ -140,3 +156,10 @@ const DetailSubastaContent: React.FC<DetailSubastaType> = props => (
 		</>
 	</h6>
 );
+
+const ContainerDetails = styled.div<{ hanPujado: boolean }>`
+	background-color: ${props => (props.hanPujado ? '#fdca20' : '#ffff')};
+	padding: 20px 0px;
+	border-radius: 10px;
+	transition: 0.3s ease;
+`;

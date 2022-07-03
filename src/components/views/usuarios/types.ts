@@ -1,3 +1,6 @@
+import { PagoType } from '../pagos/types';
+import { FavoritoType, SubastaType } from '../subastas/types';
+
 interface RolType {
 	idrol: number;
 	nombrerol: string;
@@ -22,8 +25,9 @@ export interface UserType {
 	bids?: number;
 	rolid?: number;
 	rol?: RolType;
-	pagos?: any[];
-	favoritos?: any[];
+	subastasGanadas?: SubastaType[];
+	pagos?: PagoType[];
+	favoritos?: FavoritoType[];
 }
 
 export interface UserTypeTable extends UserType {
