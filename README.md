@@ -12,6 +12,17 @@ se utiliza bootstrap modificado para la libreria de css
 en la carpeta dentro de components podrás ver a Layout y views, dentro de Layout pongo el core de la aplicación
 como el diseño de interfaz y reutilización de components y dentro de la carpeta views tengo componentes locales que son de esa vista y también la configuración de esa vista
 
+## En views tenemos
+
+articulos_categorias [Categorias de productos]
+articulos_productos [Productos que se van a relacionar con subastas]
+auth [Pagina de autenticaciones]
+Home [Dashboard del backend]
+pagos [Backend en donde caen todos los pagos]
+settings_paquete_bids [View para modificar los paquetes de bids]
+settings_subastas-destacadas [View para agregar y quitar subastas destacadas]
+usuarios [View para ver todos los usuarios registrados en la aplicación]
+
 Para el en vivo se utiliza el context de Socket para recibir información de un solo link
 
 Dentro de las variables de entorno tenemos la siguientes variables:
