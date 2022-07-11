@@ -27,7 +27,7 @@ Para el en vivo se utiliza el context de Socket para recibir información de un 
 
 Dentro de las variables de entorno tenemos la siguientes variables:
 
-REACT_APP_PUBLIC_URL [server backend imagenes assets]
-REACT_APP_BACKEND_URL [server backend bases de datos]
-REACT_APP_SOCKET_URL [websocket server]
-REACT_APP_FRONTEND_URL [Pagina de la APP o sea subastec.com]
+REACT_APP_PUBLIC_URL [server backend imagenes assets] <br/>
+REACT_APP_BACKEND_URL [server backend bases de datos]  <br/>
+REACT_APP_SOCKET_URL [websocket server] <br/>
+REACT_APP_FRONTEND_URL [Pagina de la APP o sea subastec.com] <br/>
