@@ -14,14 +14,14 @@ como el diseño de interfaz y reutilización de components y dentro de la carpet
 
 ## En views tenemos
 
-articulos_categorias [Categorias de productos] &nbsp;
-articulos_productos [Productos que se van a relacionar con subastas] &nbsp;
-auth [Pagina de autenticaciones] &nbsp;
-Home [Dashboard del backend] &nbsp;
-pagos [Backend en donde caen todos los pagos] &nbsp;
-settings_paquete_bids [View para modificar los paquetes de bids] &nbsp;
-settings_subastas-destacadas [View para agregar y quitar subastas destacadas] &nbsp;
-usuarios [View para ver todos los usuarios registrados en la aplicación] &nbsp;
+articulos_categorias [Categorias de productos] <br/>
+articulos_productos [Productos que se van a relacionar con subastas] <br/>
+auth [Pagina de autenticaciones] <br/>
+Home [Dashboard del backend] <br/>
+pagos [Backend en donde caen todos los pagos] <br/>
+settings_paquete_bids [View para modificar los paquetes de bids] <br/>
+settings_subastas-destacadas [View para agregar y quitar subastas destacadas] <br/>
+usuarios [View para ver todos los usuarios registrados en la aplicación] <br/>
 
 Para el en vivo se utiliza el context de Socket para recibir información de un solo link
 
